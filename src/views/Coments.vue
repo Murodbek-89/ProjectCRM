@@ -1,12 +1,14 @@
 <template>
   <div class="coment-card conter">
-    <Hero :titles="title" />
+    <Hero :titles="$filters.local('Coment')" />
 
     <ComentAdd @updateComent="updateComents" />
 
     <Loader v-if="loading" />
 
-    <p class="center red" v-else-if="!items">Hozircha comentariya yo'q!</p>
+    <p class="center red" v-else-if="!items">
+      {{ $filters.local('noComent') }}
+    </p>
 
     <div
       v-else
@@ -26,8 +28,8 @@
       v-model="page"
       :page-count="pageCount"
       :click-handler="pageHendler"
-      :prev-text="'Orqaga'"
-      :next-text="'Oldinga'"
+      :prev-text="$filters.local('Orqaga')"
+      :next-text="$filters.local('Oldinga')"
       :container-class="'pagination center'"
       :page-class="'waves-effect'"
     />
@@ -45,7 +47,6 @@ export default {
   created() {},
   data() {
     return {
-      title: 'Coment',
       loading: true,
       addCount: 0,
     };

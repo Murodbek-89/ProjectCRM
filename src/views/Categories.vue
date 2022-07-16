@@ -1,6 +1,6 @@
 <template>
   <div class="conter">
-    <Hero :titles="title" />
+    <Hero :titles="$filters.local('Categories')" />
     <section>
       <Loader v-if="loading" />
       <div class="row" v-else>
@@ -12,7 +12,7 @@
           :key="categories.length + updateCount"
           @updateData="updateCategories"
         />
-        <h4 v-else class="center red">Toifa topilmadi!</h4>
+        <h4 v-else class="center red">{{ $filters.local('NoCategor') }}</h4>
       </div>
     </section>
   </div>
@@ -25,7 +25,6 @@ export default {
   name: 'Categories',
   data() {
     return {
-      title: 'Toifa',
       categories: [],
       loading: true,
       updateCount: 0,

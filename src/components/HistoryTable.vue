@@ -3,11 +3,11 @@
     <thead>
       <tr>
         <th>#</th>
-        <th>Miqdor</th>
-        <th>Vaqt</th>
-        <th>Toifa</th>
-        <th>Tur</th>
-        <th>Ochish</th>
+        <th>{{ $filters.local('Miqdor') }}</th>
+        <th>{{ $filters.local('Date') }}</th>
+        <th>{{ $filters.local('Categories') }}</th>
+        <th>{{ $filters.local('Tur') }}</th>
+        <th>{{ $filters.local('Ochish') }}</th>
       </tr>
     </thead>
 

@@ -1,21 +1,23 @@
 <template>
   <div class="conter">
-    <Hero :titles="title" />
+    <Hero :titles="$filters.local('Tarix')" />
 
     <div class="history-chart">
       <canvas id="myChart"></canvas>
     </div>
 
     <Loader v-if="loading" />
-    <p class="center" v-else-if="!records.length">Hozircha yozuv yuq!</p>
+    <p class="center" v-else-if="!records.length">
+      {{ $filters.local('noRecord') }}
+    </p>
     <section v-else>
       <HistoryTableVue :records="items" />
       <Paginate
         v-model="page"
         :page-count="pageCount"
         :click-handler="pageHendler"
-        :prev-text="'Orqaga'"
-        :next-text="'Oldinga'"
+        :prev-text="$filters.local('Orqaga')"
+        :next-text="$filters.local('Oldinga')"
         :container-class="'pagination center'"
         :page-class="'waves-effect'"
       />
@@ -28,6 +30,7 @@ Chart.register(...registerables);
 import pagination from '../mixins/paginete';
 import HistoryTableVue from '@/components/HistoryTable.vue';
 import Hero from '@/components/apps/Hero.vue';
+import localizeFilter from '@/filtrs/localefiltr';
 export default {
   name: 'History',
   mixins: [pagination],
@@ -51,7 +54,7 @@ export default {
         labels: categories.map((c) => c.title),
         datasets: [
           {
-            label: 'Chiqimmlar',
+            label: localizeFilter('Chiqim'),
             data: categories.map((c) => {
               return this.records.reduce((total, r) => {
                 if (r.categoryId === c.id && r.type === 'outcome') {
@@ -102,7 +105,10 @@ export default {
             categoryName: categories.find((c) => c.id === record.categoryId)
               .title,
             typeClass: record.type === 'income' ? 'green' : 'red',
-            typeText: record.type === 'income' ? 'Kirim' : 'Chiqim',
+            typeText:
+              record.type === 'income'
+                ? localizeFilter('Kirim')
+                : localizeFilter('Chiqim'),
           };
         })
       );

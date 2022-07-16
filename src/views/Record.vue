@@ -1,12 +1,14 @@
 <template>
   <div class="conter">
-    <Hero :titles="title" />
+    <Hero :titles="$filters.local('Record')" />
 
     <Loader v-if="loading" />
 
     <p class="center red" v-else-if="!categories.length">
-      Hozircha toifa topilmadi
-      <router-link to="/categories">Yangi toifa yaratish</router-link>
+      {{ $filters.local('NoCategor') }}
+      <router-link to="/categories">{{
+        $filters.local('NewCategor')
+      }}</router-link>
     </p>
 
     <div class="card grey darken-3 recs">
@@ -17,7 +19,7 @@
               {{ sel.title }}
             </option>
           </select>
-          <label>Toifa tanlang!</label>
+          <label> {{ $filters.local('Categors') }}</label>
         </div>
 
         <p>
@@ -29,7 +31,7 @@
               value="income"
               v-model="type"
             />
-            <span>Kirim</span>
+            <span>{{ $filters.local('Kirim') }}</span>
           </label>
         </p>
 
@@ -42,7 +44,7 @@
               value="outcome"
               v-model="type"
             />
-            <span>Chiqim</span>
+            <span>{{ $filters.local('Chiqim') }}</span>
           </label>
         </p>
 
@@ -53,11 +55,11 @@
             v-model.number="amount"
             :class="{ invalid: v$.amount.$error && v$.amount.minValue }"
           />
-          <label for="amount">Miqdor</label>
+          <label for="amount">{{ $filters.local('Miqdor') }}</label>
           <span
             class="helper-text invalid"
             v-if="v$.amount.$error && v$.amount.minValue"
-            >Eng kam miqdor</span
+            >{{ $filters.local('minMiqdor') }}</span
           >
         </div>
 
@@ -70,16 +72,16 @@
               invalid: v$.description.$error && v$.description.required,
             }"
           />
-          <label for="description">Yozuv</label>
+          <label for="description">{{ $filters.local('Yozuv') }}</label>
           <span
             class="helper-text invalid"
             v-if="v$.description.$error && v$.description.required"
-            >Yozuv kiriting!</span
+            >{{ $filters.local('addYozuv') }}</span
           >
         </div>
 
         <button class="btn waves-effect waves-light" type="submit">
-          Yaratish
+          {{ $filters.local('Yaratish') }}
           <i class="material-icons right">send</i>
         </button>
       </form>

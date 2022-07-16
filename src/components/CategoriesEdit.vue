@@ -2,7 +2,7 @@
   <div class="col s12 m6 grey darken-3 carta">
     <div>
       <div class="page-subtitle">
-        <h4>Tahrirlash</h4>
+        <h4>{{ $filters.local('Tahrirlash') }}</h4>
       </div>
 
       <form @submit.prevent="submitForms">
@@ -12,7 +12,7 @@
               {{ selec.title }}
             </option>
           </select>
-          <label>Toifa tanlang!</label>
+          <label>{{ $filters.local('Categors') }}</label>
         </div>
 
         <div class="input-field">
@@ -22,11 +22,11 @@
             v-model="title"
             :class="{ invalid: v$.title.$error && v$.title.required }"
           />
-          <label for="name">Nomi</label>
+          <label for="name">{{ $filters.local('Name') }}</label>
           <span
             class="helper-text invalid"
             v-if="v$.title.$error && v$.title.required"
-            >Nomini kiriting!</span
+            >{{ $filters.local('Names') }}</span
           >
         </div>
 
@@ -37,16 +37,16 @@
             v-model.number="limit"
             :class="{ invalid: v$.limit.$error && v$.limit.minValue }"
           />
-          <label for="limit">Miqdor</label>
+          <label for="limit">{{ $filters.local('Miqdor') }}</label>
           <span
             class="helper-text invalid"
             v-if="v$.limit.$error && v$.limit.minValue"
-            >Eng kam miqdor
+            >{{ $filters.local('minMIqdor') }}
           </span>
         </div>
 
         <button class="btn waves-effect waves-light" type="submit">
-          Yangilash
+          {{ $filters.local('Yangilash') }}
           <i class="material-icons right">send</i>
         </button>
       </form>

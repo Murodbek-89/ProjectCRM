@@ -17,7 +17,7 @@
       <small
         class="helper-text invalid"
         v-if="v$.email.$error && v$.email.required"
-        >Emailni to'g'ri kiriting!
+        >{{ $filters.local('Emails') }}
       </small>
     </div>
 
@@ -30,12 +30,12 @@
           invalid: v$.password.$error && v$.password.minLength,
         }"
       />
-      <label for="password">Пароль</label>
+      <label for="password">{{ $filters.local('Parol') }}</label>
       <small
         class="helper-text invalid"
         v-if="v$.password.$error && v$.password.minLength"
       >
-        Parol 6 ta belgidan kam bo'lmasin! Xozir {{ password.length }}</small
+        {{ $filters.local('Parols') }} {{ password.length }}</small
       >
     </div>
 
@@ -48,18 +48,18 @@
           invalid: v$.name.$error && v$.name.required,
         }"
       />
-      <label for="name">Ismingiz</label>
+      <label for="name">{{ $filters.local('Name') }}</label>
       <small
         class="helper-text invalid"
         v-if="v$.name.$error && v$.name.required"
-        >Ismingizni yozing!</small
+        >{{ $filters.local('NameSpan') }}</small
       >
     </div>
 
     <p>
       <label>
         <input type="checkbox" v-model="check" />
-        <span>To'g'rilikga rioya qilasizmi</span>
+        <span>{{ $filters.local('Togrilik') }}</span>
       </label>
     </p>
 
@@ -70,13 +70,13 @@
           type="submit"
           @click.prevent="submitForm"
         >
-          Ro'yxatdan o'tish
+          {{ $filters.local('Register') }}
           <i class="material-icons right">send</i>
         </button>
       </div>
       <p class="center">
-        Akauntingiz bormi?
-        <router-link to="/login">Kirish</router-link>
+        {{ $filters.local('Akaunts') }}
+        <router-link to="/login">{{ $filters.local('Kirish') }}</router-link>
       </p>
     </div>
   </form>

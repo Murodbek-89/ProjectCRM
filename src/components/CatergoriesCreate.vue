@@ -1,7 +1,7 @@
 <template>
   <div class="col s12 m6 brown carta">
     <div class="page-subtitle">
-      <h4>Yaratish</h4>
+      <h4>{{ $filters.local('Yaratish') }}</h4>
     </div>
 
     <form class="" @submit.prevent="submitForma">
@@ -14,11 +14,11 @@
             invalid: v$.title.$error && v$.title.required,
           }"
         />
-        <label for="name">Nomi</label>
+        <label for="name">{{ $filters.local('Name') }}</label>
         <span
           class="helper-text invalid"
           v-if="v$.title.$error && v$.title.required"
-          >Nomini yozing!</span
+          >{{ $filters.local('Names') }}</span
         >
       </div>
 
@@ -29,16 +29,16 @@
           v-model.number="limit"
           :class="{ invalid: v$.limit.$error && v$.limit.minValue }"
         />
-        <label for="limit">Miqdor</label>
+        <label for="limit">{{ $filters.local('Miqdor') }}</label>
         <span
           class="helper-text invalid"
           v-if="v$.limit.$error && v$.limit.minValue"
-          >Eng kam miqdor
+          >{{ $filters.local('minMiqdor') }}
         </span>
       </div>
 
       <button class="btn waves-effect waves-light" type="submit">
-        Yaratish
+        {{ $filters.local('Yaratish') }}
         <i class="material-icons right">send</i>
       </button>
     </form>

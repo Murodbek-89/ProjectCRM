@@ -1,12 +1,18 @@
 <template>
   <div class="conter">
-    <Hero :titles="title" />
+    <Hero :titles="$filters.local('Batasil')" />
     <Loader v-if="loading" />
     <div v-else-if="record" v-for="rec of record" :key="rec">
       <div class="breadcrumb-wrap">
-        <router-link to="/history" class="breadcrumb blue">Qaytish</router-link>
+        <router-link to="/history" class="breadcrumb">{{
+          $filters.local('Orqaga')
+        }}</router-link>
         <a @click.prevent class="breadcrumb"
-          >{{ rec.type === 'income' ? 'Kirim' : 'Chiqim' }}
+          >{{
+            rec.type === 'income'
+              ? $filters.local('Kirim')
+              : $filters.local('Chiqim')
+          }}
         </a>
       </div>
       <div class="row">
@@ -19,9 +25,12 @@
             }"
           >
             <div class="card-content">
-              <p>Tavsif: {{ rec.description }}</p>
-              <p>Miqdor: {{ $filters.curr(rec.amount, 'RUB') }}</p>
-              <p>Toifa: {{ rec.catName }}</p>
+              <p>{{ $filters.local('Tavsif') }}: {{ rec.description }}</p>
+              <p>
+                {{ $filters.local('Miqdor') }}:
+                {{ $filters.curr(rec.amount, 'RUB') }}
+              </p>
+              <p>{{ $filters.local('Categories') }}: {{ rec.catName }}</p>
 
               <small>{{ $filters.date(rec.date, 'datetime') }}</small>
             </div>
@@ -29,7 +38,9 @@
         </div>
       </div>
     </div>
-    <p class="center" v-else>Bunaqa {{ $route.params.id }} ID topilmadi!</p>
+    <p class="center" v-else>
+      {{ $route.params.id }} {{ $filters.local('NoId') }}
+    </p>
   </div>
 </template>
 <script>

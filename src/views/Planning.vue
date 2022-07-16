@@ -1,6 +1,6 @@
 <template>
   <div class="conter">
-    <Hero :titles="title" />
+    <Hero :titles="$filters.local('Reja')" />
     <div>
       <div class="page-title">
         <h4 class="grey-text">{{ $filters.curr(info.bill, 'RUB') }}</h4>
@@ -9,15 +9,17 @@
       <Loader v-if="loading" />
 
       <p class="center red" v-else-if="!categories.length">
-        Hozircha categoriya topilmadi
-        <router-link to="/categories">Yangi kategoriya yaratish</router-link>
+        {{ $filters.local('NoCategor') }}
+        <router-link to="/categories">{{
+          $filters.local('NewCategor')
+        }}</router-link>
       </p>
 
       <section class="grey-text" v-else>
         <div v-for="cats of categories" :key="cats.id">
           <p>
             <strong>{{ cats.title }}</strong>
-            {{ $filters.curr(cats.spend, 'RUB') }} из
+            {{ $filters.curr(cats.spend, 'RUB') }} {{ $filters.local('Dan') }}
             {{ $filters.curr(cats.limit, 'RUB') }}
           </p>
           <div class="progress" v-tooltips="cats.tooltip">
@@ -36,11 +38,11 @@
 import currencyFilter from '@/filtrs/currencyfiltr';
 import { mapGetters } from 'vuex';
 import Hero from '@/components/apps/Hero.vue';
+import localize from '@/filtrs/localefiltr';
 export default {
   name: 'Planning',
   data() {
     return {
-      title: 'Planning',
       loading: true,
       categories: [],
     };
@@ -61,7 +63,7 @@ export default {
         percent < 60 ? 'green' : percent < 100 ? 'yellow' : 'red';
       const tooltipValue = cat.limit - spend;
       const tooltip = `${
-        tooltipValue < 0 ? 'Judayam kup xarajat' : 'Qolgan mablag'
+        tooltipValue < 0 ? localize('Tooltips') : localize('Tooltip')
       } ${currencyFilter(Math.abs(tooltipValue), 'RUB')}`;
       return {
         ...cat,

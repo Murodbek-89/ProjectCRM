@@ -17,7 +17,7 @@
       <small
         class="helper-text invalid"
         v-if="v$.email.$error && v$.email.required"
-        >Emailni to'g'ri kiriting!
+        >{{ $filters.local('Emails') }}
       </small>
     </div>
 
@@ -30,12 +30,12 @@
           invalid: v$.password.$error && v$.password.minLength,
         }"
       />
-      <label for="password">Пароль</label>
+      <label for="password">{{ $filters.local('Parol') }}</label>
       <small
         class="helper-text invalid"
         v-if="v$.password.$error && v$.password.minLength"
       >
-        Parol 6 ta belgidan kam bo'lmasin! Xozir {{ password.length }}</small
+        {{ $filters.local('Parols') }} {{ password.length }}</small
       >
     </div>
 
@@ -46,14 +46,16 @@
           type="submit"
           @click.prevent="submitForm"
         >
-          Kirish
+          {{ $filters.local('Kirish') }}
           <i class="material-icons right">send</i>
         </button>
       </div>
 
       <p class="center">
-        Akauntingiz yo'qmi?
-        <router-link to="/register">Ro'yxatdan o'tish!</router-link>
+        {{ $filters.local('Akaunt') }}
+        <router-link to="/register">{{
+          $filters.local('Register')
+        }}</router-link>
       </p>
     </div>
   </form>

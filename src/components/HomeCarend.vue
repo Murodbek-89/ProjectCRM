@@ -3,14 +3,14 @@
     <div class="card bill-card">
       <div class="card-content">
         <div class="card-header">
-          <span class="card-title">Valyuta kursi</span>
+          <span class="card-title">{{ $filters.local('KursValyut') }}</span>
         </div>
         <table>
           <thead>
             <tr class="currency-line">
-              <th>Valyuta</th>
-              <th>Kurs</th>
-              <th>Sana</th>
+              <th>{{ $filters.local('Valyut') }}</th>
+              <th>{{ $filters.local('Kurs') }}</th>
+              <th>{{ $filters.local('Date') }}</th>
             </tr>
           </thead>
 

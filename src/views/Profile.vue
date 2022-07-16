@@ -1,10 +1,8 @@
 <template>
   <div class="conter">
-    <div class="page-title">
-      <h3>{{ $filters.local('ProfileTitle') }}</h3>
-    </div>
+    <Hero :titles="$filters.local('Profile')" />
 
-    <form class="form">
+    <form class="form auth-card">
       <div class="input-field">
         <input
           id="description"
@@ -14,10 +12,10 @@
             validate: v$.name.$dirty && v$.name.required,
           }"
         />
-        <label for="description">Ismingiz</label>
-        <span class="helper-text invalid" v-if="v$.name.$error"
-          >Ismingizni kiriting!</span
-        >
+        <label for="description">{{ $filters.local('Name') }}</label>
+        <span class="helper-text invalid" v-if="v$.name.$error">{{
+          $filters.local('NameSpan')
+        }}</span>
       </div>
 
       <div class="switch page-title">
@@ -34,7 +32,7 @@
         type="submit"
         @click.prevent="submitFormas"
       >
-        Yangilash
+        {{ $filters.local('Yangilash') }}
         <i class="material-icons right">send</i>
       </button>
     </form>
@@ -44,6 +42,7 @@
 import { mapGetters, mapActions } from 'vuex';
 import useVuelidate from '@vuelidate/core';
 import { required } from '@vuelidate/validators';
+import Hero from '@/components/apps/Hero.vue';
 export default {
   name: 'Profile',
   data() {
@@ -65,7 +64,6 @@ export default {
       if (this.v$.$invalid) {
         return;
       }
-
       try {
         await this.updateInfo({
           name: this.name,
@@ -84,6 +82,7 @@ export default {
   computed: {
     ...mapGetters(['info']),
   },
+  components: { Hero },
 };
 </script>
 <style scoped></style>

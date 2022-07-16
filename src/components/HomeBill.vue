@@ -2,7 +2,7 @@
   <div class="col s12 m6 l4">
     <div class="card bill-card">
       <div class="card-content">
-        <span class="card-title">Mabalg'ingiz valyutada</span>
+        <span class="card-title">{{ $filters.local('Valyuta') }}</span>
 
         <p v-for="carn of currencies" :key="carn" class="currency-line">
           <span>{{ $filters.curr(getCarend(carn), carn) }}</span>

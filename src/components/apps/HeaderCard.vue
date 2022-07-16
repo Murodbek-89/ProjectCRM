@@ -1,7 +1,9 @@
 <template>
   <nav class="grey darken-3">
     <div class="nav-wrapper">
-      <router-link to="/" class="brand-logo">Xisob-Kitob</router-link>
+      <router-link to="/" class="brand-logo">{{
+        $filters.local('Xisob')
+      }}</router-link>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"
         ><i class="material-icons">menu</i></a
       >
@@ -29,8 +31,12 @@
   </nav>
 
   <ul id="dropdown1" class="dropdown-content">
-    <li><router-link to="/profile">Profile</router-link></li>
-    <li><a href="#" @click.prevent="logout">Chiqish</a></li>
+    <li>
+      <router-link to="/profile">{{ $filters.local('Profile') }}</router-link>
+    </li>
+    <li>
+      <a href="#" @click.prevent="logout">{{ $filters.local('Chiqish') }}</a>
+    </li>
   </ul>
 
   <ul id="mobile-demo" class="sidenav grey darken-1" ref="navmenu">
@@ -54,6 +60,7 @@
 </template>
 
 <script>
+import localize from '@/filtrs/localefiltr';
 export default {
   name: 'HeaderCard',
   created() {},
@@ -62,11 +69,11 @@ export default {
       dropdown: null,
       navi: null,
       links: [
-        { title: 'Record', url: '/record' },
-        { title: 'History', url: '/history' },
-        { title: 'Planning', url: '/planning' },
-        { title: 'Categories', url: '/categories' },
-        { title: 'Coments', url: '/coments' },
+        { title: localize('Record'), url: '/record' },
+        { title: localize('Tarix'), url: '/history' },
+        { title: localize('Reja'), url: '/planning' },
+        { title: localize('Categories'), url: '/categories' },
+        { title: localize('Coment'), url: '/coments' },
       ],
     };
   },

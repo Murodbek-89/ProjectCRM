@@ -2,7 +2,7 @@
   <div class="card auth-card modal" id="modal1" ref="modals">
     <div class="input-field">
       <i class="material-icons prefix">mode_edit</i>
-      <label for="text">Comentarya</label>
+      <label for="text">{{ $filters.local('Coment') }}</label>
       <textarea
         id="text"
         class="materialize-textarea"
@@ -14,7 +14,7 @@
       <small
         class="helper-text invalid"
         v-if="v$.coment.$error && v$.coment.minLength"
-        >Comentariyangiz 20 belgidan kam bo'lmasligi kerak!
+        >{{ $filters.local('Coments') }}
       </small>
     </div>
     <div class="card-action">
@@ -24,7 +24,7 @@
           @click.prevent="submitForm"
           type="submit"
         >
-          Qo'shish
+          {{ $filters.local('Qoshish') }}
           <i class="material-icons right">send</i>
         </button>
       </div>

@@ -1,6 +1,6 @@
 <template>
   <div class="conter">
-    <Hero :titles="title" />
+    <Hero :titles="$filters.local('Home')" />
     <Loader v-if="loading" />
     <div class="row" v-else>
       <HomeBill :rates="currency.rates" />
@@ -19,7 +19,6 @@ export default {
   created() {},
   data() {
     return {
-      title: "Mablag'",
       loading: true,
       currency: null,
     };

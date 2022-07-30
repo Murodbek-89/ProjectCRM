@@ -1,7 +1,9 @@
+import local from '@/filtrs/localefiltr';
+
 export default {
-  logout: 'Siz ilovadan chiqdingiz!',
-  login: 'Avval ilovaga kiring!',
-  'auth/user-not-found': 'Bunaqa foydalanuvchi topilmadi',
-  'auth/wrong-password': 'Parolni tugri kiriting!',
-  'auth/email-already-in-use': 'Bunaqa foydalanuvchi ruxatga olingan!',
+  logout: local('Logout'),
+  login: local('FirstLogin'),
+  'auth/user-not-found': local('NoUserEmail'),
+  'auth/wrong-password': local('noPassword'),
+  'auth/email-already-in-use': local('noEmail'),
 };

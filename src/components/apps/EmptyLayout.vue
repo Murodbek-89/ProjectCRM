@@ -5,9 +5,19 @@
 </template>
 
 <script>
+import messages from '@/messages/messages';
+import local from '@/filtrs/localefiltr';
 export default {
-  computed: {},
-  watch: {},
+  computed: {
+    error() {
+      return this.$store.getters.error;
+    },
+  },
+  watch: {
+    error(fbError) {
+      this.$error(messages[fbError.code] || local('Error'));
+    },
+  },
 };
 </script>
 

@@ -30,13 +30,12 @@ Chart.register(...registerables);
 import pagination from '../mixins/paginete';
 import HistoryTableVue from '@/components/HistoryTable.vue';
 import Hero from '@/components/apps/Hero.vue';
-import localizeFilter from '@/filtrs/localefiltr';
+import local from '@/filtrs/localefiltr';
 export default {
   name: 'History',
   mixins: [pagination],
   data() {
     return {
-      title: 'Tarix',
       loading: true,
       records: [],
       charts: null,
@@ -54,7 +53,7 @@ export default {
         labels: categories.map((c) => c.title),
         datasets: [
           {
-            label: localizeFilter('Chiqim'),
+            label: local('Chiqim'),
             data: categories.map((c) => {
               return this.records.reduce((total, r) => {
                 if (r.categoryId === c.id && r.type === 'outcome') {
@@ -106,9 +105,7 @@ export default {
               .title,
             typeClass: record.type === 'income' ? 'green' : 'red',
             typeText:
-              record.type === 'income'
-                ? localizeFilter('Kirim')
-                : localizeFilter('Chiqim'),
+              record.type === 'income' ? local('Kirim') : local('Chiqim'),
           };
         })
       );

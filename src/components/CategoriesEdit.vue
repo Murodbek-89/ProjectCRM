@@ -22,7 +22,7 @@
             v-model="title"
             :class="{ invalid: v$.title.$error && v$.title.required }"
           />
-          <label for="name">{{ $filters.local('Name') }}</label>
+          <label for="name">{{ $filters.local('Nam') }}</label>
           <span
             class="helper-text invalid"
             v-if="v$.title.$error && v$.title.required"
@@ -41,7 +41,7 @@
           <span
             class="helper-text invalid"
             v-if="v$.limit.$error && v$.limit.minValue"
-            >{{ $filters.local('minMIqdor') }}
+            >{{ $filters.local('minMiqdor') }}
           </span>
         </div>
 
@@ -57,6 +57,7 @@
 <script>
 import useVuelidate from '@vuelidate/core';
 import { required, minValue } from '@vuelidate/validators';
+import local from '@/filtrs/localefiltr';
 export default {
   name: 'CategoriesEdit',
   data() {
@@ -87,7 +88,7 @@ export default {
           limit: this.limit,
         };
         await this.$store.dispatch('updateCategory', categoryData);
-        this.$message('Kategorya yangilandi');
+        this.$message(local('updateCategor'));
         this.$emit('updateData', categoryData);
       } catch (e) {}
     },

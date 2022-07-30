@@ -14,7 +14,7 @@
             invalid: v$.title.$error && v$.title.required,
           }"
         />
-        <label for="name">{{ $filters.local('Name') }}</label>
+        <label for="name">{{ $filters.local('Nam') }}</label>
         <span
           class="helper-text invalid"
           v-if="v$.title.$error && v$.title.required"
@@ -48,6 +48,7 @@
 <script>
 import useVuelidate from '@vuelidate/core';
 import { required, minValue } from '@vuelidate/validators';
+import local from '@/filtrs/localefiltr';
 export default {
   name: 'CategoriesCreate',
   data() {
@@ -79,7 +80,7 @@ export default {
           limit: this.limit,
         });
         (this.title = ''), (this.limit = 100), this.v$.$reset();
-        this.$message('Kategoriya yaratildi');
+        this.$message(local('nowCategor'));
         this.$emit('createdNew', categorya);
       } catch (e) {}
     },

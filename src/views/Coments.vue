@@ -2,7 +2,7 @@
   <div class="coment-card conter">
     <Hero :titles="$filters.local('Coment')" />
 
-    <ComentAdd @updateComent="updateComents" />
+    <ComentAdd @addComent="addComents" />
 
     <Loader v-if="loading" />
 
@@ -10,12 +10,7 @@
       {{ $filters.local('noComent') }}
     </p>
 
-    <div
-      v-else
-      class="row collection text-col"
-      v-for="com in items"
-      :key="com + addCount"
-    >
+    <div class="row collection text-col" v-for="com in items" :key="com.id">
       <div class="col s9">
         <p>{{ com.coment }}</p>
       </div>
@@ -24,6 +19,7 @@
         {{ com.name }}
       </div>
     </div>
+
     <Paginate
       v-model="page"
       :page-count="pageCount"
@@ -44,7 +40,6 @@ import pagination from '../mixins/paginete';
 export default {
   name: 'Coments',
   mixins: [pagination],
-  created() {},
   data() {
     return {
       loading: true,
@@ -57,11 +52,8 @@ export default {
   },
   props: {},
   methods: {
-    updateComents(come) {
-      this.items.name = come.name;
-      this.items.coment = come.coment;
-      this.addCount++;
-      console.log(this.items);
+    addComents(come) {
+      this.items.push(come);
     },
   },
   components: { Hero, Loader, ComentAdd },

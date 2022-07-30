@@ -93,12 +93,12 @@ import { mapGetters } from 'vuex';
 import useVuelidate from '@vuelidate/core';
 import { required, minValue } from '@vuelidate/validators';
 import Hero from '@/components/apps/Hero.vue';
+import local from '@/filtrs/localefiltr';
 export default {
   name: 'Record',
   data() {
     return {
       v$: useVuelidate(),
-      title: 'Yozish',
       loading: true,
       select: null,
       categories: [],
@@ -143,15 +143,13 @@ export default {
               ? this.info.bill + this.amount
               : this.info.bill - this.amount;
           await this.$store.dispatch('updateInfo', { bill });
-          this.$message('Yangilanish muvfaqiyatli yakunlandi');
+          this.$message(local('newRecord'));
           this.v$.$reset();
           this.amount = 1;
           this.description = '';
         } catch (e) {}
       } else {
-        this.$message(
-          `Mablag'inginz yetarli emas (${this.amount - this.info.bill})`
-        );
+        this.$message(`${local('noAmount')} (${this.amount - this.info.bill})`);
       }
     },
   },

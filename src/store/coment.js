@@ -14,7 +14,6 @@ export default {
     },
     async fetchComent({ dispatch }) {
       try {
-        const uid = await dispatch('getUid');
         const db = getDatabase();
         const comentar = [];
         await onValue(ref(db, 'coments'), (snapshot) => {

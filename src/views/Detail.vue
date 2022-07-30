@@ -49,7 +49,6 @@ export default {
   name: 'Detail',
   data() {
     return {
-      title: 'Batafsil',
       record: null,
       loading: true,
       catNames: null,

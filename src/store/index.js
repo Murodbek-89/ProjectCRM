@@ -4,6 +4,7 @@ import info from './info';
 import category from './category';
 import record from './record';
 import coment from './coment';
+import images from './images';
 
 export default createStore({
   state: {
@@ -26,5 +27,5 @@ export default createStore({
       return await res.json();
     },
   },
-  modules: { users, info, category, record, coment },
+  modules: { users, info, category, record, coment, images },
 });

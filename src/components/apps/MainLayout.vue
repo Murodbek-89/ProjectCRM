@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="app-main-layout">
-      <HeaderCard />
+      <HeaderCard :key="locale" />
       <main class="app-content">
         <div class="app-page">
           <router-view />
@@ -13,6 +13,7 @@
 <script>
 import HeaderCard from './HeaderCard.vue';
 import messages from '@/messages/messages';
+import local from '@/filtrs/localefiltr';
 
 export default {
   data() {
@@ -28,10 +29,13 @@ export default {
     error() {
       return this.$store.getters.error;
     },
+    locale() {
+      return this.$store.getters.info.locale;
+    },
   },
   watch: {
     error(fbError) {
-      this.$error(messages[fbError.code] || 'Nimadur xato ketdi');
+      this.$error(messages[fbError.code] || local('Error'));
     },
   },
   components: { HeaderCard },

@@ -27,13 +27,7 @@ export default {
     this.currency = await this.$store.dispatch('fetchCurrency');
     this.loading = false;
   },
-  methods: {
-    async refresh() {
-      this.loading = true;
-      this.currency = await this.$store.dispatch('fetchCarend');
-      this.loading = false;
-    },
-  },
+
   components: { HomeBill, HomeCarend, Loader, Hero },
 };
 </script>

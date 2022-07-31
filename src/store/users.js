@@ -4,7 +4,8 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
-import { getDatabase, ref, set } from 'firebase/database';
+import { getDatabase, ref as dbRef, set } from 'firebase/database';
+import { getStorage, uploadBytes, ref as sgRef } from 'firebase/storage';
 export default {
   actions: {
     async login({ commit }, { email, password }) {
@@ -15,15 +16,18 @@ export default {
         throw e;
       }
     },
-    async register({ dispatch, commit }, { email, password, name }) {
+    async register({ dispatch, commit }, { email, password, name, photo }) {
       try {
         await createUserWithEmailAndPassword(getAuth(), email, password);
         const uid = await dispatch('getUid');
         const db = getDatabase();
-        await set(ref(db, 'users/' + uid + '/info'), {
+        await set(dbRef(db, 'users/' + uid + '/info'), {
           bill: 10000,
           name,
         });
+        const sg = getStorage();
+        const refPhotos = sgRef(sg, uid + '/userPhoto.jpg');
+        uploadBytes(refPhotos, photo);
       } catch (e) {
         commit('setError', e);
         throw e;

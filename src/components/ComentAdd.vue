@@ -1,5 +1,5 @@
 <template>
-  <div class="card auth-card modal" id="modal1" ref="modals">
+  <div class="card auth-card modal" id="modal2" ref="modals">
     <div class="input-field">
       <i class="material-icons prefix">mode_edit</i>
       <label for="text">{{ $filters.local('Coment') }}</label>
@@ -34,7 +34,7 @@
   <div class="fixed-action-btn">
     <a
       class="btn-floating btn-large red btn modal-trigger"
-      href="#modal1"
+      href="#modal2"
       data-position="top"
       v-tooltips="$filters.local('Yaratish')"
     >

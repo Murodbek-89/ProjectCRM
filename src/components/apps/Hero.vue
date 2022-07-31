@@ -9,12 +9,12 @@
           v-tooltips="$filters.local('Photo')"
           href="#modal1"
         >
-          <i class="material-icons">add</i>
+          <i class="material-icons">camera_alt</i>
         </div>
         <h4 class="center">{{ titles }}</h4>
       </li>
     </ul>
-    <div id="modal1" class="modal card auth-card" ref="modale">
+    <div id="modal1" class="modal card auth-card" ref="modalka">
       <form action="#" @submit.prevent="addImages">
         <div class="file-field">
           <input type="file" @change="newImages" />
@@ -92,7 +92,7 @@ export default {
       this.date = new Date();
     }, 1000);
 
-    this.modal = M.Modal.init(this.$refs.modale);
+    this.modal = M.Modal.init(this.$refs.modalka);
   },
   destroyed() {
     if (this.modal && this.modal.destroy) {

@@ -3,6 +3,7 @@ import {
   uploadBytes,
   ref as sgRef,
   getDownloadURL,
+  getMetadata,
 } from 'firebase/storage';
 import { getDatabase, ref as dbRef, push } from 'firebase/database';
 
@@ -13,7 +14,7 @@ export default {
         const uid = await dispatch('getUid');
         const sg = getStorage();
         const db = getDatabase();
-        const newPhotos = dbRef(db, 'users/' + uid + '/photos');
+        const newPhotos = dbRef(db, 'users/' + uid + '/photo');
         push(newPhotos, photo.title);
         const refPhotos = sgRef(sg, uid + '/userPhoto.jpg');
         uploadBytes(refPhotos, photo.files);
@@ -27,7 +28,6 @@ export default {
         const uid = await dispatch('getUid');
         const sg = getStorage();
         const refPhoto = sgRef(sg, uid + '/userPhoto.jpg');
-        const refImage = sgRef(sg, 'image.png');
         return getDownloadURL(refPhoto);
       } catch (e) {
         commit('setError', e);

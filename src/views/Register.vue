@@ -116,6 +116,7 @@ export default {
         email: this.email,
         password: this.password,
         name: this.name,
+        photo: require('@/image/user.png'),
       };
       try {
         await this.$store.dispatch('register', formUser);

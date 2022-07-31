@@ -15,7 +15,7 @@
         <p>{{ com.coment }}</p>
       </div>
       <div class="chip secondary-content">
-        <img alt="Contact Person" src="../image/01.jpg" />
+        <img :src="userImages" />
         {{ com.name }}
       </div>
     </div>
@@ -44,10 +44,12 @@ export default {
     return {
       loading: true,
       addCount: 0,
+      userImages: null,
     };
   },
   async mounted() {
     this.setPagination(await this.$store.dispatch('fetchComent'));
+
     this.loading = false;
   },
   props: {},
